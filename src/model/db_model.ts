@@ -1,21 +1,25 @@
 import mongoose from "mongoose"
 import "dotenv/config"
-// import Pokemon from "./pokemon_type"
+import { buildPokemonSchema } from "./pokemon_type"
 
 const url = process.env.MONGO_URI
 
 if (url === undefined) {
     throw Error("dont have mongodb uri")
 }
-mongoose.connect(url)
-    .then(() => console.log("Connected to Mongo!"))
+
+mongoose.connect(url, {
+    dbName: "Pokemans",
+}).then(() => console.log("Connected to Mongo!"))
     .catch((e) => console.log(e))
 
-// TODO: Create schema
+
 const pokeSchema = new mongoose.Schema({
-    id: { type: Number },
+    id: { type: Number, required: true, unique: true },
+    poke: buildPokemonSchema()
 })
 
-const model = mongoose.model('pokemon', pokeSchema)
+const pokemans = mongoose.model('poke', pokeSchema)
 
-export default model
+export default pokemans
+// export default mongoose.model('poke', pokeSchema)
