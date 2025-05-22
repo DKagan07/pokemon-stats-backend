@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express"
 import axios from "axios"
 import { Pokemon } from "../model/pokemon_type"
+// import model from "../model/db_model"
 
 const pokeRouter = express.Router()
 const BASE_URL = "https://pokeapi.co/api/v2"
@@ -25,6 +26,9 @@ pokeRouter.get('/:poke', async (req: Request, res: Response) => {
     }
 
     // TODO: Need to parse the data for frontend, this has everything
+    // 
+    // This model is imported above, and connected to the mongo instance
+    // model.find()
 })
 
 export default pokeRouter
