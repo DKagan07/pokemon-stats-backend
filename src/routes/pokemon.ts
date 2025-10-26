@@ -26,7 +26,8 @@ pokeRouter.get('/:poke', async (req: Request, res: Response) => {
     }
 
     // TODO: Need to parse the data for frontend, this has everything
-    // 
+    // maybe <Pick> something here?
+    //
     // This model is imported above, and connected to the mongo instance
     const p = await pokemans.exists({ id: data.id }).exec()
     console.log({ p })
